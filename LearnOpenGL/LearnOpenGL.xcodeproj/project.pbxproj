@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		18D0B8F51FA5B17400FF6765 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B8F41FA5B17400FF6765 /* main.cpp */; };
+		18D0B9051FA5B28400FF6765 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B9041FA5B28400FF6765 /* glad.c */; };
+		18D0B9081FA5B44D00FF6765 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B9071FA5B44D00FF6765 /* CoreVideo.framework */; };
+		18D0B90A1FA5B45900FF6765 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B9091FA5B45900FF6765 /* IOKit.framework */; };
+		18D0B90C1FA5B46200FF6765 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B90B1FA5B46100FF6765 /* OpenGL.framework */; };
+		18D0B90E1FA5B46E00FF6765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */; };
+		18D0B90F1FA5B47F00FF6765 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B9031FA5B24E00FF6765 /* libglfw3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,16 @@
 /* Begin PBXFileReference section */
 		18D0B8F11FA5B17400FF6765 /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D0B8F41FA5B17400FF6765 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		18D0B8FE1FA5B24E00FF6765 /* glad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glad.h; sourceTree = "<group>"; };
+		18D0B8FF1FA5B24E00FF6765 /* glfw3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
+		18D0B9001FA5B24E00FF6765 /* glfw3native.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
+		18D0B9011FA5B24E00FF6765 /* khrplatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = khrplatform.h; sourceTree = "<group>"; };
+		18D0B9031FA5B24E00FF6765 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
+		18D0B9041FA5B28400FF6765 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		18D0B9071FA5B44D00FF6765 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		18D0B9091FA5B45900FF6765 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		18D0B90B1FA5B46100FF6765 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +48,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D0B90F1FA5B47F00FF6765 /* libglfw3.a in Frameworks */,
+				18D0B90E1FA5B46E00FF6765 /* Cocoa.framework in Frameworks */,
+				18D0B90C1FA5B46200FF6765 /* OpenGL.framework in Frameworks */,
+				18D0B90A1FA5B45900FF6765 /* IOKit.framework in Frameworks */,
+				18D0B9081FA5B44D00FF6765 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +64,8 @@
 			children = (
 				18D0B8F31FA5B17400FF6765 /* LearnOpenGL */,
 				18D0B8F21FA5B17400FF6765 /* Products */,
+				18D0B8FB1FA5B24E00FF6765 /* Extras */,
+				18D0B9061FA5B44D00FF6765 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +81,56 @@
 			isa = PBXGroup;
 			children = (
 				18D0B8F41FA5B17400FF6765 /* main.cpp */,
+				18D0B9041FA5B28400FF6765 /* glad.c */,
 			);
 			path = LearnOpenGL;
+			sourceTree = "<group>";
+		};
+		18D0B8FB1FA5B24E00FF6765 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B8FC1FA5B24E00FF6765 /* Include */,
+				18D0B9021FA5B24E00FF6765 /* Libs */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		18D0B8FC1FA5B24E00FF6765 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B8FD1FA5B24E00FF6765 /* GLFW */,
+			);
+			path = Include;
+			sourceTree = "<group>";
+		};
+		18D0B8FD1FA5B24E00FF6765 /* GLFW */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B8FE1FA5B24E00FF6765 /* glad.h */,
+				18D0B8FF1FA5B24E00FF6765 /* glfw3.h */,
+				18D0B9001FA5B24E00FF6765 /* glfw3native.h */,
+				18D0B9011FA5B24E00FF6765 /* khrplatform.h */,
+			);
+			path = GLFW;
+			sourceTree = "<group>";
+		};
+		18D0B9021FA5B24E00FF6765 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B9031FA5B24E00FF6765 /* libglfw3.a */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		18D0B9061FA5B44D00FF6765 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */,
+				18D0B90B1FA5B46100FF6765 /* OpenGL.framework */,
+				18D0B9091FA5B45900FF6765 /* IOKit.framework */,
+				18D0B9071FA5B44D00FF6765 /* CoreVideo.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18D0B8F51FA5B17400FF6765 /* main.cpp in Sources */,
+				18D0B9051FA5B28400FF6765 /* glad.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +305,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/GLFW;
+				LIBRARY_SEARCH_PATHS = (
+					/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Libs,
+					"$(PROJECT_DIR)/Extras/Libs",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -241,6 +318,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/GLFW;
+				LIBRARY_SEARCH_PATHS = (
+					/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Libs,
+					"$(PROJECT_DIR)/Extras/Libs",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
