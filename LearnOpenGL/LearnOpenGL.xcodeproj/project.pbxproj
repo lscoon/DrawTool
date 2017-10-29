@@ -14,6 +14,7 @@
 		18D0B90C1FA5B46200FF6765 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B90B1FA5B46100FF6765 /* OpenGL.framework */; };
 		18D0B90E1FA5B46E00FF6765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */; };
 		18D0B90F1FA5B47F00FF6765 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B9031FA5B24E00FF6765 /* libglfw3.a */; };
+		18D0B9181FA62D3E00FF6765 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B9161FA62D3E00FF6765 /* shader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		18D0B9091FA5B45900FF6765 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		18D0B90B1FA5B46100FF6765 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		18D0B9161FA62D3E00FF6765 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		18D0B9171FA62D3E00FF6765 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				18D0B8F41FA5B17400FF6765 /* main.cpp */,
+				18D0B9161FA62D3E00FF6765 /* shader.cpp */,
 				18D0B9041FA5B28400FF6765 /* glad.c */,
 			);
 			path = LearnOpenGL;
@@ -98,6 +102,8 @@
 		18D0B8FC1FA5B24E00FF6765 /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				18D0B9111FA5D2C700FF6765 /* SHADER */,
+				18D0B9101FA5C35300FF6765 /* GLAD */,
 				18D0B8FD1FA5B24E00FF6765 /* GLFW */,
 			);
 			path = Include;
@@ -106,10 +112,8 @@
 		18D0B8FD1FA5B24E00FF6765 /* GLFW */ = {
 			isa = PBXGroup;
 			children = (
-				18D0B8FE1FA5B24E00FF6765 /* glad.h */,
 				18D0B8FF1FA5B24E00FF6765 /* glfw3.h */,
 				18D0B9001FA5B24E00FF6765 /* glfw3native.h */,
-				18D0B9011FA5B24E00FF6765 /* khrplatform.h */,
 			);
 			path = GLFW;
 			sourceTree = "<group>";
@@ -131,6 +135,23 @@
 				18D0B9071FA5B44D00FF6765 /* CoreVideo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18D0B9101FA5C35300FF6765 /* GLAD */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B9011FA5B24E00FF6765 /* khrplatform.h */,
+				18D0B8FE1FA5B24E00FF6765 /* glad.h */,
+			);
+			path = GLAD;
+			sourceTree = "<group>";
+		};
+		18D0B9111FA5D2C700FF6765 /* SHADER */ = {
+			isa = PBXGroup;
+			children = (
+				18D0B9171FA62D3E00FF6765 /* shader.hpp */,
+			);
+			path = SHADER;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D0B9181FA62D3E00FF6765 /* shader.cpp in Sources */,
 				18D0B8F51FA5B17400FF6765 /* main.cpp in Sources */,
 				18D0B9051FA5B28400FF6765 /* glad.c in Sources */,
 			);
@@ -305,11 +327,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/GLFW;
-				LIBRARY_SEARCH_PATHS = (
-					/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Libs,
-					"$(PROJECT_DIR)/Extras/Libs",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Extras/Include";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Extras/Libs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -318,11 +337,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = /Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/GLFW;
-				LIBRARY_SEARCH_PATHS = (
-					/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Libs,
-					"$(PROJECT_DIR)/Extras/Libs",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Extras/Include";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/Extras/Libs";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
