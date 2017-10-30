@@ -30,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		183FE85F1FA70652003955B8 /* VertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = VertexShader.glsl; sourceTree = "<group>"; };
+		183FE8601FA7066D003955B8 /* FragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = FragmentShader.glsl; sourceTree = "<group>"; };
 		18D0B8F11FA5B17400FF6765 /* LearnOpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnOpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D0B8F41FA5B17400FF6765 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		18D0B8FE1FA5B24E00FF6765 /* glad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glad.h; sourceTree = "<group>"; };
@@ -150,6 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				18D0B9171FA62D3E00FF6765 /* shader.hpp */,
+				183FE85F1FA70652003955B8 /* VertexShader.glsl */,
+				183FE8601FA7066D003955B8 /* FragmentShader.glsl */,
 			);
 			path = SHADER;
 			sourceTree = "<group>";

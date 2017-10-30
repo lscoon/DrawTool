@@ -11,6 +11,7 @@
 
 #include <GLAD/glad.h>
 #include <GLFW/glfw3.h>
+#include <SHADER/shader.hpp>
 
 void framebuffer_size_callback(GLFWwindow* window,int width,int height);
 void processInput(GLFWwindow *window);
@@ -19,23 +20,6 @@ void processInput(GLFWwindow *window);
 using namespace std;
 const unsigned int SCR_WIDTH=800;
 const unsigned int SCR_HEIGHT=600;
-
-const char *vertexShaderSource="#version 330 core\n"
-    "layout (location=0) in vec3 aPos;\n"
-    "layout (location=1) in vec3 aColor;\n"
-    "out vec3 ourColor;\n"
-    "void main()\n"
-    "{\n"
-    "gl_Position=vec4(aPos,1.0);\n"
-    "ourColor=aColor;"
-    "}\0";
-const char *fragmentShaderSource="#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "in vec3 ourColor;\n"
-    "void main()\n"
-    "{\n"
-    "FragColor=vec4(ourColor,1.0);\n"
-    "}\n\0";
 
 int main(int argc,const char * argv[]){
     //init GLWF
@@ -62,7 +46,8 @@ int main(int argc,const char * argv[]){
     }
     
     glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-    Shader ourShader("3.3.shader.vs", "3.3.shader.fs");
+    Shader ourShader("/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/SHADER/VertexShader.glsl",
+                     "/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/SHADER/FragmentShader.glsl");
     
     //set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[]={
@@ -84,7 +69,7 @@ int main(int argc,const char * argv[]){
     glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3* sizeof(float)));
     glEnableVertexAttribArray(1);
     //glBindBuffer(GL_ARRAY_BUFFER,0);
-    glBindVertexArray(VAO);
+    //glBindVertexArray(VAO);
     
     //Render Loop
     while(!glfwWindowShouldClose(window)){
@@ -93,11 +78,12 @@ int main(int argc,const char * argv[]){
         glClearColor(0.2f,0.3f,0.3f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
-        glUseProgram(shaderProgram);
-        float timeValue=glfwGetTime();
+        ourShader.use();
+        glBindVertexArray(VAO);
+        /*float timeValue=glfwGetTime();
         float greenValue=sin(timeValue)/2.0f+0.5f;
         int vertexColorLocation=glGetUniformLocation(shaderProgram,"ourColor");
-        glUniform4f(vertexColorLocation,0.0f,greenValue,0.0f,1.0f);
+        glUniform4f(vertexColorLocation,0.0f,greenValue,0.0f,1.0f);*/
         glDrawArrays(GL_TRIANGLES,0,3);
         
         glfwSwapBuffers(window);
