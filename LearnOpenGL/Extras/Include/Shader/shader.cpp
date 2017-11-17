@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Apple. All rights reserved.
 //
 
-#include "SHADER/shader.hpp"
+#include "shader.hpp"
 using namespace std;
 
 Shader::Shader(const char* vertexPath,const char* fragmentPath,const char* geometryPath){
