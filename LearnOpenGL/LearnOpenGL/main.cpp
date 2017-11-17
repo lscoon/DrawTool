@@ -19,7 +19,6 @@
 
 void framebuffer_size_callback(GLFWwindow* window,int width,int height);
 void key_callback(GLFWwindow* window,int key,int scancode,int action,int mods);
-void creatTextures(unsigned int texture,const char* jpgPath);
 
 // settings
 using namespace std;
@@ -56,11 +55,11 @@ int main(int argc,const char * argv[]){
                      "/Users/apple/Documents/OpenGL/LearnOpenGL/LearnOpenGL/Extras/Include/SHADER/FragmentShader.glsl");
     
     float vertices[]={
-        // positions          // colors           // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+        // position           // texture coords
+         0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
+         0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left
     };
     unsigned int indices[]={
         0,1,3,
@@ -78,12 +77,10 @@ int main(int argc,const char * argv[]){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,sizeof(indices),indices,GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)0);
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(3*sizeof(float)));
+    glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,5*sizeof(float),(void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2,2,GL_FLOAT,GL_FALSE,8*sizeof(float),(void*)(6*sizeof(float)));
-    glEnableVertexAttribArray(2);
     
     //texture
     unsigned int texture1,texture2;
@@ -131,9 +128,15 @@ int main(int argc,const char * argv[]){
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D,texture2);
         
+        glm::mat4 transform;
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, (float)glfwGetTime()*100, glm::vec3(0.0f, 0.0f, 1.0f));
+        
         ourShader.use();
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+        
         glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES,0,3);
         glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
         
         glfwSwapBuffers(window);
@@ -159,7 +162,4 @@ void key_callback(GLFWwindow* window,int key,int scancode,int action,int mods){
         glfwSetWindowShouldClose(window,GLFW_TRUE);
 }
 
-void creatTextures(unsigned int texture,const char* jpgPath){
-    
-}
 
