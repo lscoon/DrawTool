@@ -115,7 +115,7 @@ int main(int argc,const char * argv[]){
     stbi_image_free(data);
     
     ourShader.use();
-    glUniform1i(glGetUniformLocation(ourShader.ID,"texture1"),0);
+    ourShader.setInt("texture1",0);
     ourShader.setInt("texture2",1);
     
     //Render Loop
@@ -132,10 +132,9 @@ int main(int argc,const char * argv[]){
         glm::mat4 model(1);
         glm::mat4 view(1);
         glm::mat4 projection(1);
-        model = glm::rotate(model,glm::radians(-55.0f),glm::vec3(1.0f,0.0f,0.0f));
-        //view = glm::translate(view,glm::vec3(0.0f, 0.0f, -3.0f));
-        //projection = glm::perspective(glm::radians(45.0f),(float)SCR_WIDTH / (float)SCR_HEIGHT,0.1f,100.0f);
-        //projection = glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+        model = glm::rotate(model,0.0f,glm::vec3(1.0f,0.0f,0.0f));
+        view = glm::translate(view,glm::vec3(0.0f, 0.0f, -0.5f));
+        //projection = glm::perspective(glm::radians(0.0f),(float)SCR_WIDTH/(float)SCR_HEIGHT,0.1f,0.4f);
         ourShader.setMat4("model",model);
         ourShader.setMat4("view",view);
         ourShader.setMat4("projection",projection);
