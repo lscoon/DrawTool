@@ -16,6 +16,7 @@
 		18D0B90E1FA5B46E00FF6765 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */; };
 		18D0B90F1FA5B47F00FF6765 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D0B9031FA5B24E00FF6765 /* libglfw3.a */; };
 		18D0B9181FA62D3E00FF6765 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18D0B9161FA62D3E00FF6765 /* shader.cpp */; };
+		18E1D5F21FCFCC5400293BC0 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E1D5F01FCFCC5400293BC0 /* camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -303,6 +304,8 @@
 		18D0B90D1FA5B46E00FF6765 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		18D0B9161FA62D3E00FF6765 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
 		18D0B9171FA62D3E00FF6765 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		18E1D5F01FCFCC5400293BC0 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		18E1D5F11FCFCC5400293BC0 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -667,6 +670,7 @@
 				180FB7321FBF0F71001194F3 /* glm */,
 				18D0B9111FA5D2C700FF6765 /* Shader */,
 				180FB72E1FBEEB23001194F3 /* Textures */,
+				18E1D5EF1FCFCC0200293BC0 /* Camera */,
 			);
 			path = Include;
 			sourceTree = "<group>";
@@ -717,6 +721,15 @@
 				183FE8601FA7066D003955B8 /* FragmentShader.glsl */,
 			);
 			path = Shader;
+			sourceTree = "<group>";
+		};
+		18E1D5EF1FCFCC0200293BC0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				18E1D5F11FCFCC5400293BC0 /* camera.hpp */,
+				18E1D5F01FCFCC5400293BC0 /* camera.cpp */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -780,6 +793,7 @@
 				180FB72D1FBEEAD9001194F3 /* stb_image.cpp in Sources */,
 				18D0B8F51FA5B17400FF6765 /* main.cpp in Sources */,
 				18D0B9051FA5B28400FF6765 /* glad.c in Sources */,
+				18E1D5F21FCFCC5400293BC0 /* camera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
