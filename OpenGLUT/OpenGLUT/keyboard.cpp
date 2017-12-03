@@ -12,11 +12,11 @@
 
 #include "keyboard.hpp"
 
+extern float deltaAngle,deltaMove;
+
 float x = 0.0f, z = 5.0f;
 float lx = 0.0f, lz = -1.0f;
 float angle = 0.0f;
-
-extern float deltaAngle,deltaMove;
 
 void processNormalKeys(unsigned char key, int xx, int yy){
     if(key == 27)

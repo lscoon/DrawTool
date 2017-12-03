@@ -9,6 +9,7 @@
 #include <GLUT/GLUT.h>
 #include "display.hpp"
 #include "keyboard.hpp"
+#include "mouse.hpp"
 
 int main(int argc,char *argv[]) {
     glutInit(&argc,argv);
@@ -21,10 +22,13 @@ int main(int argc,char *argv[]) {
     glutReshapeFunc(reshape);
     glutIdleFunc(display);
     
+    glutIgnoreKeyRepeat(1);
     glutKeyboardFunc(processNormalKeys);
     glutSpecialFunc(pressKey);
-    glutIgnoreKeyRepeat(1);
     glutSpecialUpFunc(releaseKey);
+    
+    glutMouseFunc(mouseButton);
+    glutMotionFunc(mouseMove);
     
     glEnable(GL_DEPTH_TEST);
     glutMainLoop();

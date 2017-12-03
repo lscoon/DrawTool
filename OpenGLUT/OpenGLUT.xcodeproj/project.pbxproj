@@ -12,6 +12,7 @@
 		1876DECE1FD1275C00187AF5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1876DECD1FD1275200187AF5 /* GLUT.framework */; };
 		18A8F27B1FD41A2000F90954 /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F2791FD41A2000F90954 /* keyboard.cpp */; };
 		18A8F27E1FD4234500F90954 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F27C1FD4234500F90954 /* display.cpp */; };
+		18A8F2811FD45B1000F90954 /* mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F27F1FD45B1000F90954 /* mouse.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		18A8F27A1FD41A2000F90954 /* keyboard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = keyboard.hpp; sourceTree = "<group>"; };
 		18A8F27C1FD4234500F90954 /* display.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
 		18A8F27D1FD4234500F90954 /* display.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = display.hpp; sourceTree = "<group>"; };
+		18A8F27F1FD45B1000F90954 /* mouse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mouse.cpp; sourceTree = "<group>"; };
+		18A8F2801FD45B1000F90954 /* mouse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mouse.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,8 @@
 				18A8F27C1FD4234500F90954 /* display.cpp */,
 				18A8F27A1FD41A2000F90954 /* keyboard.hpp */,
 				18A8F2791FD41A2000F90954 /* keyboard.cpp */,
+				18A8F2801FD45B1000F90954 /* mouse.hpp */,
+				18A8F27F1FD45B1000F90954 /* mouse.cpp */,
 			);
 			path = OpenGLUT;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				18A8F27B1FD41A2000F90954 /* keyboard.cpp in Sources */,
 				1876DEC41FD125D500187AF5 /* main.cpp in Sources */,
 				18A8F27E1FD4234500F90954 /* display.cpp in Sources */,
+				18A8F2811FD45B1000F90954 /* mouse.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
