@@ -13,6 +13,7 @@
 		18A8F27B1FD41A2000F90954 /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F2791FD41A2000F90954 /* keyboard.cpp */; };
 		18A8F27E1FD4234500F90954 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F27C1FD4234500F90954 /* display.cpp */; };
 		18A8F2811FD45B1000F90954 /* mouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F27F1FD45B1000F90954 /* mouse.cpp */; };
+		18A8F2841FD4602500F90954 /* menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A8F2821FD4602500F90954 /* menu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,8 @@
 		18A8F27D1FD4234500F90954 /* display.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = display.hpp; sourceTree = "<group>"; };
 		18A8F27F1FD45B1000F90954 /* mouse.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mouse.cpp; sourceTree = "<group>"; };
 		18A8F2801FD45B1000F90954 /* mouse.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mouse.hpp; sourceTree = "<group>"; };
+		18A8F2821FD4602500F90954 /* menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = menu.cpp; sourceTree = "<group>"; };
+		18A8F2831FD4602500F90954 /* menu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = menu.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 				18A8F2791FD41A2000F90954 /* keyboard.cpp */,
 				18A8F2801FD45B1000F90954 /* mouse.hpp */,
 				18A8F27F1FD45B1000F90954 /* mouse.cpp */,
+				18A8F2831FD4602500F90954 /* menu.hpp */,
+				18A8F2821FD4602500F90954 /* menu.cpp */,
 			);
 			path = OpenGLUT;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 				18A8F27B1FD41A2000F90954 /* keyboard.cpp in Sources */,
 				1876DEC41FD125D500187AF5 /* main.cpp in Sources */,
 				18A8F27E1FD4234500F90954 /* display.cpp in Sources */,
+				18A8F2841FD4602500F90954 /* menu.cpp in Sources */,
 				18A8F2811FD45B1000F90954 /* mouse.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

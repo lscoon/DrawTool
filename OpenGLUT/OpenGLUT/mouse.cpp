@@ -27,7 +27,7 @@ void mouseButton(int button, int state, int x, int y){
 
 void mouseMove(int x, int y){
     if(xOrigin >= 0){
-        deltaAngle = (x-xOrigin) * 0.0001f;
+        deltaAngle = (x-xOrigin) * 0.001f;
         lx = sin(angle + deltaAngle);
         lz = -cos(angle + deltaAngle);
         

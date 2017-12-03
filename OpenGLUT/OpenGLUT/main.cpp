@@ -10,6 +10,7 @@
 #include "display.hpp"
 #include "keyboard.hpp"
 #include "mouse.hpp"
+#include "menu.hpp"
 
 int main(int argc,char *argv[]) {
     glutInit(&argc,argv);
@@ -31,6 +32,9 @@ int main(int argc,char *argv[]) {
     glutMotionFunc(mouseMove);
     
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    
+    createPopupMenus();
     glutMainLoop();
     
     return 1;
