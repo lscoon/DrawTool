@@ -11,10 +11,10 @@
 #include "menu.hpp"
 
 extern float scale, red, green, blue;
+extern void *font;
 
-int mainMenu, colorMenu, fillMenu, shrinkMenu;
+int mainMenu, colorMenu, fillMenu, shrinkMenu, fontMenu;
 int menuFlag = 0;
-
 
 void createPopupMenus(){
     colorMenu = glutCreateMenu(processColorMenu);
@@ -30,9 +30,20 @@ void createPopupMenus(){
     glutAddMenuEntry("Shrink", SHRINK);
     glutAddMenuEntry("Normal", NORMAL);
     
+    fontMenu = glutCreateMenu(processFontMenu);
+    glutAddMenuEntry("BITMAP_8_BY_13 ", INT_GLUT_BITMAP_8_BY_13);
+    glutAddMenuEntry("BITMAP_9_BY_15", INT_GLUT_BITMAP_9_BY_15);
+    glutAddMenuEntry("BITMAP_TIMES_ROMAN_10 ", INT_GLUT_BITMAP_TIMES_ROMAN_10);
+    glutAddMenuEntry("BITMAP_TIMES_ROMAN_24", INT_GLUT_BITMAP_TIMES_ROMAN_24);
+    glutAddMenuEntry("BITMAP_HELVETICA_10 ", INT_GLUT_BITMAP_HELVETICA_10);
+    glutAddMenuEntry("BITMAP_HELVETICA_12", INT_GLUT_BITMAP_HELVETICA_12);
+    glutAddMenuEntry("BITMAP_HELVETICA_18", INT_GLUT_BITMAP_HELVETICA_18);
+    
     mainMenu = glutCreateMenu(processMainMenu);
     glutAddSubMenu("Color", colorMenu);
     glutAddSubMenu("Polygon Mode", fillMenu);
+    glutAddSubMenu("Shrink", shrinkMenu);
+    glutAddSubMenu("Font", fontMenu);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
     glutMenuStateFunc(processMenuStatus);
@@ -72,4 +83,15 @@ void processShrinkMenu(int option){
     }
 }
 
+void processFontMenu(int option){
+    switch(option){
+        case INT_GLUT_BITMAP_8_BY_13:font = GLUT_BITMAP_8_BY_13;break;
+        case INT_GLUT_BITMAP_9_BY_15:font = GLUT_BITMAP_9_BY_15;break;
+        case INT_GLUT_BITMAP_TIMES_ROMAN_10:font = GLUT_BITMAP_TIMES_ROMAN_10;break;
+        case INT_GLUT_BITMAP_TIMES_ROMAN_24:font = GLUT_BITMAP_TIMES_ROMAN_24;break;
+        case INT_GLUT_BITMAP_HELVETICA_10:font = GLUT_BITMAP_HELVETICA_10;break;
+        case INT_GLUT_BITMAP_HELVETICA_12:font = GLUT_BITMAP_HELVETICA_12;break;
+        case INT_GLUT_BITMAP_HELVETICA_18:font = GLUT_BITMAP_HELVETICA_18;break;
+    }
+}
 

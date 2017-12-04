@@ -12,6 +12,7 @@
 void display();
 void drawSnowMan();
 void reshape(int w, int h);
+void renderBitmapString(float x, float y, float z, void *font, char *string);
 
 void computePos(float deltaMove);
 void computeDir(float deltaAngle);

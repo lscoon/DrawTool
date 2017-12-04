@@ -29,14 +29,14 @@ void processNormalKeys(unsigned char key, int xx, int yy){
             glutDestroyMenu(fillMenu);
             glutDestroyMenu(shrinkMenu);
             exit(0);break;
-        case 's':
+        /*case 's':
             if(!menuFlag)
                 glutChangeToSubMenu(1, "Shrink", shrinkMenu);
             break;
         case 'c':
             if(!menuFlag)
                 glutChangeToSubMenu(1, "Color", colorMenu);
-            break;
+            break;*/
     }
 }
 

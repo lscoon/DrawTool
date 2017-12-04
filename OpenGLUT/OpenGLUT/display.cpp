@@ -8,6 +8,7 @@
 
 #include <GLUT/GLUT.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "display.hpp"
 
@@ -18,6 +19,7 @@ float deltaMove = 0.0f;
 
 float red = 1.0f, green = 0.5f, blue = 0.5f;
 float scale = 1.0f;
+void *font = GLUT_BITMAP_TIMES_ROMAN_24;
 
 void display(){
     if(deltaMove)
@@ -40,9 +42,12 @@ void display(){
     glVertex3f( 100.0f, 0.0f, -100.0f);
     glEnd();
     
+    char number[3];
     glPushMatrix();
     glTranslatef(0, 0, 0);
     drawSnowMan();
+    sprintf(number, "%d", 1);
+    renderBitmapString(0.0f, 0.5f, 0.0f, (void *)font, number);
     glPopMatrix();
     
     //angle += 0.05f;
@@ -86,6 +91,13 @@ void reshape(int w,int h){
     glViewport(0, 0, w, h);
     gluPerspective(45.0f, ratio, 0.1f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
+}
+
+void renderBitmapString(float x, float y, float z, void *font, char *string){
+    char *c;
+    glRasterPos3f(x, y, z);
+    for(c = string; *c != '\0' ; c++)
+        glutBitmapCharacter(font, *c);
 }
 
 void computePos(float deltaMove){
