@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		181858541FD7A5F200A1B03E /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181858521FD7A5F200A1B03E /* font.cpp */; };
+		181858571FD7ECE000A1B03E /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181858551FD7ECE000A1B03E /* draw.cpp */; };
 		1876DEC41FD125D500187AF5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1876DEC31FD125D400187AF5 /* main.cpp */; };
 		1876DECC1FD1274A00187AF5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1876DECB1FD1273C00187AF5 /* OpenGL.framework */; };
 		1876DECE1FD1275C00187AF5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1876DECD1FD1275200187AF5 /* GLUT.framework */; };
@@ -32,6 +33,8 @@
 /* Begin PBXFileReference section */
 		181858521FD7A5F200A1B03E /* font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = font.cpp; sourceTree = "<group>"; };
 		181858531FD7A5F200A1B03E /* font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = font.hpp; sourceTree = "<group>"; };
+		181858551FD7ECE000A1B03E /* draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = draw.cpp; sourceTree = "<group>"; };
+		181858561FD7ECE000A1B03E /* draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = draw.hpp; sourceTree = "<group>"; };
 		1876DEC01FD125D400187AF5 /* OpenGLUT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLUT; sourceTree = BUILT_PRODUCTS_DIR; };
 		1876DEC31FD125D400187AF5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1876DECB1FD1273C00187AF5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -82,6 +85,8 @@
 				1876DEC31FD125D400187AF5 /* main.cpp */,
 				18A8F27D1FD4234500F90954 /* display.hpp */,
 				18A8F27C1FD4234500F90954 /* display.cpp */,
+				181858561FD7ECE000A1B03E /* draw.hpp */,
+				181858551FD7ECE000A1B03E /* draw.cpp */,
 				18A8F27A1FD41A2000F90954 /* keyboard.hpp */,
 				18A8F2791FD41A2000F90954 /* keyboard.cpp */,
 				18A8F2801FD45B1000F90954 /* mouse.hpp */,
@@ -166,6 +171,7 @@
 				18A8F27E1FD4234500F90954 /* display.cpp in Sources */,
 				18A8F2841FD4602500F90954 /* menu.cpp in Sources */,
 				18A8F2811FD45B1000F90954 /* mouse.cpp in Sources */,
+				181858571FD7ECE000A1B03E /* draw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,14 @@
 #define display_hpp
 
 void renderScene();
-void drawSnowMan();
-void reshape(int w, int h);
+void renderDisplay();
+void renderControl();
+void renderSceneAll();
+void changeSize(int w, int h);
 
 void computePos(float deltaMove);
 void computeDir(float deltaAngle);
 
-void setOrthographicProjection();
-void restorePerspectiveProjection();
+void setProjection(int w, int h);
 
 #endif /* display_hpp */
