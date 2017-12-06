@@ -9,12 +9,14 @@
 #ifndef display_hpp
 #define display_hpp
 
-void display();
+void renderScene();
 void drawSnowMan();
 void reshape(int w, int h);
-void renderBitmapString(float x, float y, float z, void *font, char *string);
 
 void computePos(float deltaMove);
 void computeDir(float deltaAngle);
+
+void setOrthographicProjection();
+void restorePerspectiveProjection();
 
 #endif /* display_hpp */

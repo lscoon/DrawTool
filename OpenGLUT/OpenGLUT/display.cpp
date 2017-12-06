@@ -11,17 +11,23 @@
 #include <stdio.h>
 
 #include "display.hpp"
+#include "font.hpp"
 
+extern int width,height;
 extern float x,z,lx,lz,angle;
+extern void *font;
 
 float deltaAngle = 0.0f;
 float deltaMove = 0.0f;
 
 float red = 1.0f, green = 0.5f, blue = 0.5f;
 float scale = 1.0f;
-void *font = GLUT_BITMAP_TIMES_ROMAN_24;
 
-void display(){
+int frame;
+long time, timebase = 0;
+char s[50];
+
+void renderScene(){
     if(deltaMove)
         computePos(deltaMove);
     //if(deltaAngle)
@@ -46,9 +52,24 @@ void display(){
     glPushMatrix();
     glTranslatef(0, 0, 0);
     drawSnowMan();
-    sprintf(number, "%d", 1);
-    renderBitmapString(0.0f, 0.5f, 0.0f, (void *)font, number);
+    sprintf(number, "%d", 33);
+    renderStrokeFontString(0.0f, 0.5f, 0.0f,GLUT_STROKE_ROMAN, number);
     glPopMatrix();
+     
+    frame++;
+    time = glutGet(GLUT_ELAPSED_TIME);
+    if(time - timebase >1000){
+        sprintf(s, "FPS:%4.2f", frame * 1000.0 /(time - timebase));
+        timebase = time;
+        frame = 0;
+    }
+    
+    setOrthographicProjection();
+    glPushMatrix();
+    glLoadIdentity();
+    renderBitmapString(5, 30, 0, GLUT_BITMAP_HELVETICA_18, s);
+    glPopMatrix();
+    restorePerspectiveProjection();
     
     //angle += 0.05f;
     glutSwapBuffers();
@@ -79,25 +100,21 @@ void drawSnowMan(){
     glColor3f(red, green, blue);
     glRotatef(0.0f, 1.0f, 0.0f, 0.0f);
     glutSolidCone(0.08f,0.5f,10,2);
+    
     glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 void reshape(int w,int h){
-    if(h == 0)
-        h = 1;
-    float ratio = 1.0 * w / h;
+    width = w;
+    height = h;
+    if(height == 0)
+        height = 1;
+    float ratio = 1.0 * width / height;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glViewport(0, 0, w, h);
+    glViewport(0, 0, width, height);
     gluPerspective(45.0f, ratio, 0.1f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
-}
-
-void renderBitmapString(float x, float y, float z, void *font, char *string){
-    char *c;
-    glRasterPos3f(x, y, z);
-    for(c = string; *c != '\0' ; c++)
-        glutBitmapCharacter(font, *c);
 }
 
 void computePos(float deltaMove){
@@ -111,5 +128,16 @@ void computeDir(float deltaAngle){
     lz = -cos(angle);
 }
 
-
+void setOrthographicProjection(){
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    gluOrtho2D(0, width, height, 0);
+    glMatrixMode(GL_MODELVIEW);
+}
+void restorePerspectiveProjection(){
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+}
 

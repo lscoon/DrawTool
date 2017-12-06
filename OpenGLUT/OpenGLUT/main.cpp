@@ -12,16 +12,19 @@
 #include "mouse.hpp"
 #include "menu.hpp"
 
+int width = 320;
+int height = 320;
+
 int main(int argc,char *argv[]) {
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowPosition(100,100);
-    glutInitWindowSize(320,320);
+    glutInitWindowSize(width, height);
     glutCreateWindow("MyGLUT");
     
-    glutDisplayFunc(display);
+    glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
-    glutIdleFunc(display);
+    glutIdleFunc(renderScene);
     
     glutIgnoreKeyRepeat(1);
     glutKeyboardFunc(processNormalKeys);
