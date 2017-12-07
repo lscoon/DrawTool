@@ -12,13 +12,12 @@
 
 #include "keyboard.hpp"
 
-extern float deltaAngle,deltaMove;
 extern int mainMenu, colorMenu, fillMenu, shrinkMenu;
 extern int menuFlag;
+extern float x, z, lx, lz;
 
-float x = 0.0f, z = 5.0f;
-float lx = 0.0f, lz = -1.0f;
-float angle = 0.0f;
+int xMove = 0;
+int yMove = 0;
 
 void processNormalKeys(unsigned char key, int xx, int yy){
     glutSetMenu(mainMenu);
@@ -29,30 +28,22 @@ void processNormalKeys(unsigned char key, int xx, int yy){
             glutDestroyMenu(fillMenu);
             glutDestroyMenu(shrinkMenu);
             exit(0);break;
-        /*case 's':
-            if(!menuFlag)
-                glutChangeToSubMenu(1, "Shrink", shrinkMenu);
-            break;
-        case 'c':
-            if(!menuFlag)
-                glutChangeToSubMenu(1, "Color", colorMenu);
-            break;*/
     }
 }
 
 void pressKey(int key,int xx,int yy){
     switch(key){
-        //case GLUT_KEY_LEFT:deltaAngle = -0.01f;break;
-        //case GLUT_KEY_RIGHT:deltaAngle = 0.01f;break;
-        case GLUT_KEY_UP:deltaMove = 0.5f;break;
-        case GLUT_KEY_DOWN:deltaMove = -0.5f;break;
+        case GLUT_KEY_LEFT:xMove = 1;break;
+        case GLUT_KEY_RIGHT:xMove = -1;break;
+        case GLUT_KEY_UP:yMove = -1;break;
+        case GLUT_KEY_DOWN:yMove = 1;break;
     }
 }
 void releaseKey(int key,int xx,int yy){
     switch(key){
-        //case GLUT_KEY_LEFT:
-        //case GLUT_KEY_RIGHT:deltaAngle = 0.0f;break;
+        case GLUT_KEY_LEFT:
+        case GLUT_KEY_RIGHT:xMove = 0;break;
         case GLUT_KEY_UP:
-        case GLUT_KEY_DOWN:deltaMove = 0.0f;break;
+        case GLUT_KEY_DOWN:yMove = 0;break;
     }
 }

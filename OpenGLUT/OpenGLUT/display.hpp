@@ -15,9 +15,7 @@ void renderControl();
 void renderSceneAll();
 void changeSize(int w, int h);
 
-void computePos(float deltaMove);
-void computeDir(float deltaAngle);
-
+void computePos(float xMove, float yMove, float zMove);
 void setProjection(int w, int h);
 
 #endif /* display_hpp */

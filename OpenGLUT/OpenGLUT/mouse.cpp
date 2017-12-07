@@ -11,25 +11,11 @@
 
 #include "mouse.hpp"
 
-extern float lx, lz, angle, deltaAngle;
-
-int xOrigin = -1;
+int zMove = 0;
 
 void mouseButton(int button, int state, int x, int y){
-    if(button == GLUT_LEFT_BUTTON){
-        if(state == GLUT_UP){
-            angle += deltaAngle;
-            xOrigin = -1;
-        }
-        else xOrigin = x;
-    }
 }
 
 void mouseMove(int x, int y){
-    if(xOrigin >= 0){
-        deltaAngle = (x-xOrigin) * 0.001f;
-        lx = sin(angle + deltaAngle);
-        lz = -cos(angle + deltaAngle);
-        
-    }
+    
 }

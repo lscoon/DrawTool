@@ -9,8 +9,10 @@
 #ifndef draw_hpp
 #define draw_hpp
 
-void draw();
-void drawSnowMan();
+void drawDisplay();
+void drawControl();
+
+void drawButton();
 
 void drawFPS();
 void setOrthographicProjection();

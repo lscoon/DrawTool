@@ -17,19 +17,15 @@ extern int mainWindow, displayWindow, controlWindow;
 extern int width, height, border;
 extern int position1x, position1y, width1, height1;
 extern int position2x, position2y, width2, height2;
-extern float x, z, lx, lz, angle;
+extern int xMove, yMove, zMove;
 
-float deltaAngle = 0.0f;
-float deltaMove = 0.0f;
+float x = 0.0f,y = 0.0f, z = 20.0f;
+float lx = 0.0f,ly = 0.0f, lz = -20.0f;
 
 void renderScene(){
     glutSetWindow(mainWindow);
     glClear(GL_COLOR_BUFFER_BIT);
     glutSwapBuffers();
-    
-    //char number[3];
-    //sprintf(number, "%d", 33);
-    //renderStrokeFontString(0.0f, 0.5f, 0.0f,GLUT_STROKE_ROMAN, number);
 }
 
 void renderDisplay(){
@@ -37,25 +33,23 @@ void renderDisplay(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glLoadIdentity();
-    gluLookAt( x, 1.0f, z,
-              x+lx, 1.0f, z+lz,
-              0.0f, 1.0f, 0.0f);
-    draw();
-    
+    gluLookAt( x, y, z,
+              x+lx, y+ly, z+lz,
+              0.0f, 1000.0f, 0.0f);
+    drawDisplay();
     glutSwapBuffers();
 }
 
 void renderControl(){
     glutSetWindow(controlWindow);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    drawControl();
     glutSwapBuffers();
 }
 
 void renderSceneAll(){
-    if(deltaMove)
-        computePos(deltaMove);
-    //if(deltaAngle)
-    //    computeDir(deltaAngle);
+    if(xMove | yMove | zMove)
+        computePos(xMove, yMove, zMove);
     
     renderDisplay();
     renderControl();
@@ -86,15 +80,10 @@ void changeSize(int w,int h){
     setProjection(width2, height2);
 }
 
-void computePos(float deltaMove){
-    x += deltaMove * lx * 0.1f;
-    z += deltaMove * lz * 0.1f;
-}
-
-void computeDir(float deltaAngle){
-    angle += deltaAngle;
-    lx = sin(angle);
-    lz = -cos(angle);
+void computePos(float xMove, float yMove, float zMove){
+    lx += xMove * 0.02f;
+    ly += yMove * 0.02f;
+    lz += zMove * 0.02f;
 }
 
 void setProjection(int w, int h){
@@ -102,6 +91,6 @@ void setProjection(int w, int h){
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, w, h);
-    gluPerspective(45.0f, ratio, 0.1f, 10.0f);
+    gluPerspective(45.0f, ratio, 0.1f, 1000.0f);
     glMatrixMode(GL_MODELVIEW);
 }
