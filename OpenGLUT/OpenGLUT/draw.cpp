@@ -21,13 +21,6 @@ int frame;
 long time, timebase = 0;
 char s[50];
 
-struct Button{
-    int x;
-    int y;
-    int w;
-    int h;
-};
-
 void drawDisplay(){
     glColor3f(1.0f, 0.0f, 0.0f);
     glBegin(GL_TRIANGLES);
@@ -46,35 +39,23 @@ void drawDisplay(){
 }
 
 void drawControl(){
-    //
+    Button b1 = {-2.0f, 5.0f, 3.0f, 1.5f};
+    drawButton(&b1);
+    Button b2 = {-2.0f, 2.0f, 3.0f, 1.5f};
+    drawButton(&b2);
+    Button b3 = {-2.0f, -1.0f, 3.0f, 1.5f};
+    drawButton(&b3);
 }
 
 void drawButton(Button *b){
     if(b){
-        glColor3f(0.6f, 0.6f, 0.6f);
+        glColor3f(0.0f, 0.0f, 1.0f);
         glBegin(GL_QUADS);
-            glVertex2i(b->x, b->y);
-            glVertex2i(b->x, b->y + b->h);
-            glVertex2i(b->x + b->w, b->y + b->h);
-            glVertex2i(b->x + b->w, b->y);
+            glVertex3f(b->x, b->y, 0.0f);
+            glVertex3f(b->x + b->w, b->y, 0.0f);
+            glVertex3f(b->x + b->w, b->y + b->h, 0.0f);
+            glVertex3f(b->x, b->y + b->h, 0.0f);
         glEnd();
-        
-        glLineWidth(3);
-        glColor3f(0.8f,0.8f,0.8f);
-        glBegin(GL_LINE_STRIP);
-            glVertex2i(b->x + b->w, b->y);
-            glVertex2i(b->x, b->y);
-            glVertex2i(b->x, b->y + b->h );
-        glEnd();
-        
-        glColor3f(0.4f,0.4f,0.4f);
-        glBegin(GL_LINE_STRIP);
-            glVertex2i(b->x, b->y+b->h);
-            glVertex2i(b->x+b->w, b->y+b->h);
-            glVertex2i(b->x+b->w, b->y);
-        glEnd();
-        
-        glLineWidth(1);
     }
 }
 

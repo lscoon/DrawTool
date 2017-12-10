@@ -9,10 +9,17 @@
 #ifndef draw_hpp
 #define draw_hpp
 
+typedef struct Button{
+    float x;
+    float y;
+    float w;
+    float h;
+}Button;
+
 void drawDisplay();
 void drawControl();
 
-void drawButton();
+void drawButton(Button *b);
 
 void drawFPS();
 void setOrthographicProjection();

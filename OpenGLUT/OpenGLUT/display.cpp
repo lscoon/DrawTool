@@ -43,6 +43,9 @@ void renderDisplay(){
 void renderControl(){
     glutSetWindow(controlWindow);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glLoadIdentity();
+    gluLookAt(0.0f,0.0f,20.0f,0.0f,0.0f,-20.0f,0.0f,1000.0f,0.0f);
     drawControl();
     glutSwapBuffers();
 }
@@ -72,25 +75,26 @@ void changeSize(int w,int h){
     glutSetWindow(displayWindow);
     glutPositionWindow(position1x, position1y);
     glutReshapeWindow(width1, height1);
-    setProjection(width1, height1);
+    float ratio = 1.0 * width1/height1;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glViewport(0, 0, width1, height1);
+    gluPerspective(45.0f, ratio, 0.1f, 1000.0f);
+    glMatrixMode(GL_MODELVIEW);
     
     glutSetWindow(controlWindow);
     glutPositionWindow(position2x, position2y);
     glutReshapeWindow(width2, height2);
-    setProjection(width2, height2);
+    ratio = 1.0 * width2/height2;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glViewport(0, 0, width2, height2);
+    gluPerspective(45.0f, ratio, 0.1f, 1000.0f);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void computePos(float xMove, float yMove, float zMove){
     lx += xMove * 0.02f;
     ly += yMove * 0.02f;
     lz += zMove * 0.02f;
-}
-
-void setProjection(int w, int h){
-    float ratio = 1.0 * w/h;
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glViewport(0, 0, w, h);
-    gluPerspective(45.0f, ratio, 0.1f, 1000.0f);
-    glMatrixMode(GL_MODELVIEW);
 }
