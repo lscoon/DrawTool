@@ -10,6 +10,7 @@
 
 #include "draw.hpp"
 #include "font.hpp"
+#include "bitmap.hpp"
 
 extern int width1, height1, border;
 extern void *font;
@@ -28,28 +29,29 @@ void drawDisplay(){
         glVertex3f( 2.0f, 0.0f, 0.0f);
         glVertex3f( 0.0f, 2.0f, 0.0f);
     glEnd();
-    
-    /*
-    glPushMatrix();
-    glTranslatef(0, 0, 0);
-    drawSnowMan();
-    glPopMatrix();*/
-    
     drawFPS();
 }
 
 void drawControl(){
-    Button b1 = {-2.0f, 5.0f, 3.0f, 1.5f};
+    glColor3f(0.0f, 0.6f, 0.0f);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+        glVertex3f(-2.5f, 9.0f, 0.0f);
+        glVertex3f(-2.5f, -9.0f, 0.0f);
+    glEnd();
+    glLineWidth(1);
+    
+    Button b1 = {-1.5f, 5.0f, 3.0f, 1.5f};
     drawButton(&b1);
-    Button b2 = {-2.0f, 2.0f, 3.0f, 1.5f};
+    Button b2 = {-1.5f, 2.0f, 3.0f, 1.5f};
     drawButton(&b2);
-    Button b3 = {-2.0f, -1.0f, 3.0f, 1.5f};
+    Button b3 = {-1.5f, -1.0f, 3.0f, 1.5f};
     drawButton(&b3);
 }
 
 void drawButton(Button *b){
     if(b){
-        glColor3f(0.0f, 0.0f, 1.0f);
+        glColor3f(0.0f, 0.0f, 0.8f);
         glBegin(GL_QUADS);
             glVertex3f(b->x, b->y, 0.0f);
             glVertex3f(b->x + b->w, b->y, 0.0f);
@@ -57,6 +59,12 @@ void drawButton(Button *b){
             glVertex3f(b->x, b->y + b->h, 0.0f);
         glEnd();
     }
+}
+
+void DrawBitmap(long width, long height, unsigned char* bitmapImage){
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    glRasterPos2i(0,0);
+    glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, bitmapImage);
 }
 
 void drawFPS(){
