@@ -20,7 +20,7 @@ void drawDisplay();
 void drawControl();
 
 void drawButton(Button *b);
-void DrawBitmap(long width, long height, unsigned char* bitmapImage);
+void drawBitmap(long width, long height, unsigned char* bitmapImage);
 
 void drawFPS();
 void setOrthographicProjection();

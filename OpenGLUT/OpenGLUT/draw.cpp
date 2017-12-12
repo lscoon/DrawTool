@@ -22,14 +22,19 @@ int frame;
 long time, timebase = 0;
 char s[50];
 
+BITMAPINFOHEADER bitmapInfoHeader;
+unsigned char *bitmapData;
+
+
 void drawDisplay(){
+    drawFPS();
     glColor3f(1.0f, 0.0f, 0.0f);
     glBegin(GL_TRIANGLES);
         glVertex3f( -2.0f, -2.0f, 0.0f);
         glVertex3f( 2.0f, 0.0f, 0.0f);
         glVertex3f( 0.0f, 2.0f, 0.0f);
     glEnd();
-    drawFPS();
+    bitmapData = LoadBitmapFile("test.bmp",&bitmapInfoHeader);
 }
 
 void drawControl(){
@@ -61,7 +66,7 @@ void drawButton(Button *b){
     }
 }
 
-void DrawBitmap(long width, long height, unsigned char* bitmapImage){
+void drawBitmap(long width, long height, unsigned char* bitmapImage){
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
     glRasterPos2i(0,0);
     glDrawPixels(width, height, GL_RGB, GL_UNSIGNED_BYTE, bitmapImage);
