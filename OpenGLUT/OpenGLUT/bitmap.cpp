@@ -11,7 +11,7 @@
 #include "stdlib.h"
 #include "string.h"
 
-unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader){
+unsigned char *LoadBitmapFile(const char *filename, BITMAPINFOHEADER *bitmapInfoHeader){
     FILE *filePtr;
     BITMAPFILEHEADER bitmapFileHeader;
     unsigned char *bitmapImage;
@@ -21,7 +21,8 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
         return NULL;
     
     fread(&bitmapFileHeader, sizeof(BITMAPFILEHEADER), 1, filePtr);
-    if(bitmapFileHeader.type != BITMAP_ID){
+    
+    if(bitmapFileHeader.type != 'BM'){
         fclose(filePtr);
         return NULL;
     }

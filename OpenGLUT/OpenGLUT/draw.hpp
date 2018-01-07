@@ -16,8 +16,11 @@ typedef struct Button{
     float h;
 }Button;
 
-void drawDisplay();
-void drawControl();
+void draw();
+void drawDDA(int startx, int starty, int endx, int endy);
+void drawBresenham(int startx, int starty, int endx, int endy);
+void drawCircle(int x0, int y0, int r);
+void drawOval(int x0, int y0, int a, int b);
 
 void drawButton(Button *b);
 void drawBitmap(long width, long height, unsigned char* bitmapImage);

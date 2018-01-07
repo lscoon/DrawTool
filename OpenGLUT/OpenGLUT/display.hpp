@@ -10,9 +10,6 @@
 #define display_hpp
 
 void renderScene();
-void renderDisplay();
-void renderControl();
-void renderSceneAll();
 void changeSize(int w, int h);
 
 void computePos(float xMove, float yMove, float zMove);

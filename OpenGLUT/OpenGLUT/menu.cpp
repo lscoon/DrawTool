@@ -56,7 +56,6 @@ void processMenuStatus(int status){
 }
 
 void processMainMenu(int option){
-    
 }
 
 void processColorMenu(int option){

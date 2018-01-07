@@ -39,7 +39,7 @@ typedef struct BitmapInfoHeader{
     DWORD clrImportant;
 }BITMAPINFOHEADER;
 
-unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
+unsigned char *LoadBitmapFile(const char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
 bool WriteBitmapFile(char *filename, int width, int height, unsigned char * bitmapData);
 
 #endif /* bitmap_hpp */
