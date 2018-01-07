@@ -7,28 +7,51 @@
 //
 
 #include <GLUT/GLUT.h>
+#include <vector>
 
 #include "menu.hpp"
+#include "graph.hpp"
 
+extern std::vector<graph> allgraph;
+extern graph nowgraph;
 extern float scale, red, green, blue;
 extern void *font;
 
-int mainMenu, colorMenu, fillMenu, shrinkMenu, fontMenu;
+int mainMenu, colorMenu, drawMenu, transformMenu, fontMenu;
 int menuFlag = 0;
+int chooseFlag, showFlag;
+int lineFlag, circleFlag, ovalFlag, bezierFlag, polygonFlag;
+int panningFlag, rotateFlag, zoomFlag;
 
 void createPopupMenus(){
+    chooseFlag = 0;
+    showFlag = 0;
+    lineFlag = 0;
+    circleFlag = 0;
+    ovalFlag = 0;
+    bezierFlag = 0;
+    polygonFlag = 0;
+    
+    panningFlag = 0;
+    rotateFlag = 0;
+    zoomFlag = 0;
+    
     colorMenu = glutCreateMenu(processColorMenu);
     glutAddMenuEntry("Red", RED);
     glutAddMenuEntry("Blue", BLUE);
     glutAddMenuEntry("Green", GREEN);
     
-    fillMenu = glutCreateMenu(processFillMenu);
-    glutAddMenuEntry("Fill", FILL);
+    drawMenu = glutCreateMenu(processDrawMenu);
     glutAddMenuEntry("Line", LINE);
+    glutAddMenuEntry("Circle", CIRCLE);
+    glutAddMenuEntry("Oval", OVAL);
+    glutAddMenuEntry("Bezier", BEZIER);
+    glutAddMenuEntry("Polygon", POLYGON);
     
-    shrinkMenu = glutCreateMenu(processShrinkMenu);
-    glutAddMenuEntry("Shrink", SHRINK);
-    glutAddMenuEntry("Normal", NORMAL);
+    transformMenu = glutCreateMenu(processTransformMenu);
+    glutAddMenuEntry("Panning", PANNING);
+    glutAddMenuEntry("Rotate", ROTATE);
+    glutAddMenuEntry("Zoom", ZOOM);
     
     fontMenu = glutCreateMenu(processFontMenu);
     glutAddMenuEntry("BITMAP_8_BY_13 ", INT_GLUT_BITMAP_8_BY_13);
@@ -40,9 +63,11 @@ void createPopupMenus(){
     glutAddMenuEntry("BITMAP_HELVETICA_18", INT_GLUT_BITMAP_HELVETICA_18);
     
     mainMenu = glutCreateMenu(processMainMenu);
+    glutAddMenuEntry("Choose", CHOOSE);
+    glutAddMenuEntry("Show", SHOW);
     glutAddSubMenu("Color", colorMenu);
-    glutAddSubMenu("Polygon Mode", fillMenu);
-    glutAddSubMenu("Shrink", shrinkMenu);
+    glutAddSubMenu("Draw", drawMenu);
+    glutAddSubMenu("Transform", transformMenu);
     glutAddSubMenu("Font", fontMenu);
     
     glutAttachMenu(GLUT_RIGHT_BUTTON);
@@ -56,6 +81,21 @@ void processMenuStatus(int status){
 }
 
 void processMainMenu(int option){
+    if(option == CHOOSE){
+        chooseFlag = 1;
+        
+        lineFlag = 0;
+        circleFlag = 0;
+        ovalFlag = 0;
+        bezierFlag = 0;
+        
+        panningFlag = 0;
+        rotateFlag = 0;
+        zoomFlag = 0;
+    }
+    if(option == SHOW){
+        showFlag = 1;
+    }
 }
 
 void processColorMenu(int option){
@@ -68,17 +108,32 @@ void processColorMenu(int option){
     }
 }
 
-void processFillMenu(int option){
+void processDrawMenu(int option){
+    lineFlag = 0;
+    circleFlag = 0;
+    ovalFlag = 0;
+    bezierFlag = 0;
+    polygonFlag = 0;
     switch(option){
-        case FILL:glPolygonMode(GL_FRONT, GL_FILL);break;
-        case LINE:glPolygonMode(GL_FRONT, GL_LINE);break;
+        case LINE:{
+            lineFlag = 1;
+            nowgraph.type = LINE;
+        }break;
+        case CIRCLE:circleFlag = 1;break;
+        case OVAL:ovalFlag = 1;break;
+        case BEZIER:bezierFlag = 1;break;
+        case POLYGON:polygonFlag = 1;break;
     }
 }
 
-void processShrinkMenu(int option){
+void processTransformMenu(int option){
+    panningFlag = 0;
+    rotateFlag = 0;
+    zoomFlag = 0;
     switch(option){
-        case SHRINK:scale = 0.5f;break;
-        case NORMAL:scale = 1.0f;break;
+        case PANNING:panningFlag = 1;break;
+        case ROTATE:rotateFlag = 1;break;
+        case ZOOM:zoomFlag = 1;break;
     }
 }
 

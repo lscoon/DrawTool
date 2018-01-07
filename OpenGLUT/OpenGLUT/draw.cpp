@@ -8,12 +8,21 @@
 
 #include <GLUT/GLUT.h>
 #include <iostream>
+#include <math.h>
+#include <vector>
 
 #include "draw.hpp"
 #include "mouse.hpp"
 #include "font.hpp"
 #include "bitmap.hpp"
 
+#include "graph.hpp"
+
+using namespace std;
+extern vector<graph> allgraph;
+extern graph nowgraph;
+
+extern int lineFlag;
 extern int width, height;
 extern Mouse myMouse;
 extern void *font;
@@ -30,8 +39,29 @@ unsigned char *bitmapData;
 
 void draw(){
     glColor3f(1.0f, 0.0f, 0.0f);
+    for(auto g = allgraph.begin();g != allgraph.end(); g++){
+        switch(g->type){
+            case LINE:g->drawLine();break;
+            default:break;
+        }
+    }
+    
+    
+    switch (nowgraph.type){
+        case NOTHING:break;
+        case LINE:{
+            nowgraph.drawLine();
+            if(lineFlag == 2){
+                graph *temp = new graph(Point(myMouse.xpress,height - myMouse.ypress), Point(myMouse.x,height - myMouse.y));
+                temp->drawLine();
+                delete(temp);
+            }
+        }break;
+        default:break;
+    }
+    //drawBezier(0, 0, 10, 100, 100, 130, 300, 100);
     //drawDDA(myMouse.xpress, height - myMouse.ypress, myMouse.x, height - myMouse.y);
-    drawOval(myMouse.x, height - myMouse.y, 30,20);
+    //drawOval(myMouse.x, height - myMouse.y, 30,20);
     //const char *fileName = "/Users/apple/Documents/Photos/bear.bmp";
     //bitmapData = LoadBitmapFile(fileName, &bitmapInfoHeader);
     //if(bitmapData == NULL)
@@ -39,157 +69,6 @@ void draw(){
     drawFPS();
 }
 
-void drawDDA(int startx, int starty, int endx, int endy){
-    glBegin(GL_POINTS);
-    float dx,dy,k;
-    dx = endx - startx;
-    dy = endy - starty;
-    k = dy/dx;
-    if(k <= 1){
-        float y = starty;
-        for(int x = startx; x <= endx; x++){
-            glVertex2i(x, int(y + 0.5));
-            y = y+k;
-        }
-    }
-    else{
-        k = dx/dy;
-        float x = startx;
-        for(int y = starty; y <= endy; y++){
-            glVertex2i(int(x + 0.5), y);
-            x = x + k;
-        }
-    }
-    glEnd();
-}
-
-void drawBresenham(int startx, int starty, int endx, int endy){
-    glBegin(GL_POINTS);
-    int x,y,dx,dy,s1,s2,p,interchange;
-    x = startx;
-    y = starty;
-    dx = endx - startx;
-    dy = endy - starty;
-    
-    if(endx > startx)
-        s1 = 1;
-    else s1 = -1;
-    if(endy > starty)
-        s2 = 1;
-    else s2 = -1;
-    
-    if(dy > dx){
-        int temp = dx;
-        dx = dy;
-        dy = temp;
-        interchange = 1;
-    }
-    else interchange = 0;
-    
-    p = 2*dy - dx;
-    for(int i = 1;i <= dx; i++){
-        glVertex2i(x, y);
-        if( p >= 0){
-            if( interchange == 0)
-                y = y + s2;
-            else x = x + s1;
-            p = p - 2*dx;
-        }
-        else{
-            if(interchange == 0)
-                x = x + s1;
-            else y = y +s2;
-            p = p + 2*dy;
-        }
-    }
-    glEnd();
-}
-
-void drawCircle(int x0, int y0, int r){
-    glBegin(GL_POINTS);
-    int x = 0;
-    int y = r;
-    int d = 1 - r;
-    glVertex2i(x0 + x, y0 + y);
-    glVertex2i(x0 + y, y0 + x);
-    glVertex2i(x0 + y, y0 - x);
-    glVertex2i(x0 + x, y0 - y);
-    glVertex2i(x0 - x, y0 - y);
-    glVertex2i(x0 - y, y0 - x);
-    glVertex2i(x0 - y, y0 + x);
-    glVertex2i(x0 - x, y0 + y);
-    while(x < y){
-        if(d < 0)
-            d += 2*x + 3;
-        else{
-            d += 2*(x - y) + 5;
-            y--;
-        }
-        x++;
-        glVertex2i(x0 + x, y0 + y);
-        glVertex2i(x0 + y, y0 + x);
-        glVertex2i(x0 + y, y0 - x);
-        glVertex2i(x0 + x, y0 - y);
-        glVertex2i(x0 - x, y0 - y);
-        glVertex2i(x0 - y, y0 - x);
-        glVertex2i(x0 - y, y0 + x);
-        glVertex2i(x0 - x, y0 + y);
-    };
-    glEnd();
-}
-
-void drawOval(int x0, int y0, int a, int b){
-    glBegin(GL_POINTS);
-    int aa = a*a;
-    int bb = b*b;
-    int twoaa = 2*aa;
-    int twobb = 2*bb;
-    int p;
-    int x = 0;
-    int y = b;
-    int px = 0;
-    int py = twoaa * y;
-    glVertex2i(x0 + x, y0 + y);
-    glVertex2i(x0 - x, y0 + y);
-    glVertex2i(x0 + x, y0 - y);
-    glVertex2i(x0 - x, y0 - y);
-    
-    p = (bb-(aa * b)+(0.25 * aa)) + 0.5;
-    while(px < py){
-        x++;
-        px += twobb;
-        if(p < 0)
-            p += bb + px;
-        else{
-            y--;
-            py -= twoaa;
-            p += bb + px - py;
-        }
-        glVertex2i(x0 + x, y0 + y);
-        glVertex2i(x0 - x, y0 + y);
-        glVertex2i(x0 + x, y0 - y);
-        glVertex2i(x0 - x, y0 - y);
-    }
-    
-    p = (bb*(x + 0.5)*(x + 0.5) + aa*(y -1)*(y - 1)- aa*bb) + 0.5;
-    while(y > 0){
-        y--;
-        py -= twoaa;
-        if(p > 0)
-            p += aa - py;
-        else{
-            x++;
-            px += twobb;
-            p += aa - py + px;
-        }
-        glVertex2i(x0 + x, y0 + y);
-        glVertex2i(x0 - x, y0 + y);
-        glVertex2i(x0 + x, y0 - y);
-        glVertex2i(x0 - x, y0 - y);
-    }
-    
-    glEnd();
-}
 /*
 void drawControl(){
     glColor3f(0.0f, 0.6f, 0.0f);
@@ -232,7 +111,7 @@ void drawFPS(){
     timenow = glutGet(GLUT_ELAPSED_TIME);
     if(timenow - timebase >1000){
         //sprintf(s, "FPS:%4.2f", frame * 1000.0 /(timenow - timebase));
-        sprintf(s, "x:%d,y:%d", myMouse.x, myMouse.y);
+        sprintf(s, "x:%d,y:%d,%d,%d", nowgraph.dx , nowgraph.dy,nowgraph.angle,nowgraph.scale);
         timebase = timenow;
         frame = 0;
     }
@@ -258,3 +137,5 @@ void restorePerspectiveProjection(){
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
 }
+
+

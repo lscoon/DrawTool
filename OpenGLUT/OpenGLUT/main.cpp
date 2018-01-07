@@ -7,15 +7,25 @@
 //
 
 #include <GLUT/GLUT.h>
+#include <math.h>
+#include <vector>
+
 #include "display.hpp"
 #include "keyboard.hpp"
 #include "mouse.hpp"
 #include "menu.hpp"
+#include "graph.hpp"
+using namespace std;
 
 int width = 800;
 int height = 600;
+vector<graph> allgraph;
+graph nowgraph;
 
 int main(int argc,char *argv[]) {
+    allgraph = vector<graph>();
+    nowgraph = graph();
+    
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
@@ -42,11 +52,11 @@ int main(int argc,char *argv[]) {
     glutMouseFunc(mouseButton);
     glutMotionFunc(mouseMove);
     glutPassiveMotionFunc(mousePassiveMove);
-    
     createPopupMenus();
     
     glutMainLoop();
     
     return 1;
 }
+
 
